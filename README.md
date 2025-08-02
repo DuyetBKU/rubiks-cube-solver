@@ -17,7 +17,7 @@
 </p>
 
 ---
-
+ 
 ## 🧩 What is this?
 
 **Rubik's Cube Auto Solver 3D** is a web-based simulator that:
