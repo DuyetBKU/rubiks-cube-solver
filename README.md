@@ -2,8 +2,7 @@
 <h1 align="center">🤖 3D Rubik's Cube Auto-Solver</h1>
 
 <p align="center">
-	<a href="https://rubiks-cube-solver-nu.vercel.app">
-  	<img src="https://i.postimg.cc/L5GCvDMk/Screen-Recording-08-03-202506-38-39-1-ezgif-com-video-to-gif-converter.gif" width="300" alt="Rubik Cube Screenshot"/>
+	<a href="https://i.postimg.cc/Kcdh0rfs/Screen-Recording-08-03-202506-38-39-1-ezgif-com-video-to-gif-converter-1.gif" width="300" alt="Rubik Cube Screenshot"/>
 </p>
 
 <p align="center">
