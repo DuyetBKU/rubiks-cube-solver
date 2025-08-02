@@ -6,9 +6,9 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Python Rubik's Cube Solver",
-  description: "Complete CFOP algorithm implementation converted from Python",
-    generator: 'v0.dev'
+  title: "DuyetBKU Rubik's Cube Solver",
+  description: "Complete CFOP algorithm from Python",
+    generator: 'DuyetBKU'
 }
 
 export default function RootLayout({
