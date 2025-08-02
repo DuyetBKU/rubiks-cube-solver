@@ -3,7 +3,7 @@
 
 <p align="center">
 	<a href="https://rubiks-cube-solver-nu.vercel.app">
-  	<img src="https://rubiks-cube-solver-nu.vercel.app/api/rubik-proxy" width="300" alt="Rubik Cube Screenshot"/>
+  	<img src="https://i.postimg.cc/L5GCvDMk/Screen-Recording-08-03-202506-38-39-1-ezgif-com-video-to-gif-converter.gif" width="300" alt="Rubik Cube Screenshot"/>
 </p>
 
 <p align="center">
