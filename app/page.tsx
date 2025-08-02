@@ -963,7 +963,7 @@ export default function RubikSolverApp() {
 
   const data = await res.json()                                    
   const urlWithCacheBust = `${data.url}?t=${Date.now()}`  // Add cache busting query param
-  setUploadStatus(`Image ready! (May take a few seconds to refresh) ${urlWithCacheBust}`)
+  setUploadStatus(`Image ready! (May take a few seconds to refresh)\n${urlWithCacheBust}`)
   }
 
   return (
