@@ -1,16 +1,17 @@
 "use client"
 
 import { useState, useRef, useCallback, useEffect } from "react"
-import { Canvas, useFrame } from "@react-three/fiber"
+import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { OrbitControls } from "@react-three/drei"
 import type * as THREE from "three"
+
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Slider } from "@/components/ui/slider"
-import { Play, Shuffle, RotateCcw, Zap, Brain, Target, Pause, LinkIcon } from "lucide-react"
-import { Footer } from "@/components/footer" // Import the new Footer component
+import { Play, Shuffle, RotateCcw, Zap, Brain, Target, Pause, Camera } from "lucide-react"
+import { Footer } from "@/components/footer"
 
 // Color mapping from Python code
 const COLORS = {
@@ -775,15 +776,13 @@ export default function RubikSolverApp() {
   const [moveHistory, setMoveHistory] = useState<string[]>([])
   const [solveTime, setSolveTime] = useState<number | null>(null)
   const [totalSteps, setTotalSteps] = useState(0)
-  const [speed, setSpeed] = useState<number>(10) // Default 10 steps/s
+  const [speed, setSpeed] = useState<number>(10)
+  const [uploadStatus, setUploadStatus] = useState<string | null>(null)
 
-  const solver = useRef(new RubiksSolver(INITIAL_CUBE, 1000 / 10)) // Initialize with default speed
-
-  // Ref to track the currently active operation to prevent race conditions
-  const activeOperationRef = useRef<string | null>(null) // 'scramble' or 'solve'
-
-  // Ref to hold the latest isPaused state for the checkPauseState callback
+  const solver = useRef(new RubiksSolver(INITIAL_CUBE, 1000 / 10))
+  const activeOperationRef = useRef<string | null>(null)
   const isPausedRef = useRef(isPaused)
+  const canvasRef = useRef<HTMLCanvasElement>(null) // Ref cho Canvas
 
   // Update isPausedRef whenever isPaused state changes
   useEffect(() => {
@@ -936,6 +935,37 @@ export default function RubikSolverApp() {
     setIsPaused((prev) => !prev)
   }, [])
 
+  const glRef = useRef<THREE.WebGLRenderer | null>(null)
+  const sceneRef = useRef<THREE.Scene | null>(null)
+  const cameraRef = useRef<THREE.Camera | null>(null)
+
+ const captureAndUploadCubeImage = async () => {
+  const gl = glRef.current
+  const scene = sceneRef.current
+  const camera = cameraRef.current
+
+  if (!gl || !scene || !camera) return
+
+  gl.setClearColor("#1c222b", 1)
+  gl.render(scene, camera)
+
+  const dataURL = gl.domElement.toDataURL("image/png")
+  const blob = await fetch(dataURL).then(res => res.blob())
+
+  const formData = new FormData()
+  formData.append("file", blob, "latest-rubik-state.png")
+
+  const res = await fetch("/api/capture-cube", {
+    method: "POST",
+    body: JSON.stringify({ imageData: dataURL }),
+    headers: { "Content-Type": "application/json" },
+  })
+
+  const data = await res.json()                                    
+  const urlWithCacheBust = `${data.url}?t=${Date.now()}`  // Add cache busting query param
+  setUploadStatus(`Image ready! (May take a few seconds to refresh) ${urlWithCacheBust}`)
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
@@ -954,20 +984,26 @@ export default function RubikSolverApp() {
           <div className="lg:col-span-2">
             <Card className="backdrop-blur-sm border p-6 text-transparent border-blue-400 bg-sidebar-accent">
               <div className="h-96 w-full">
-                <Canvas camera={{ position: [5, 5, 5], fov: 50 }}>
-                  <ambientLight intensity={1.0} />
-
+                <Canvas
+                  camera={{ position: [5, 5, 5], fov: 50 }}
+                  ref={canvasRef}
+                  gl={{ preserveDrawingBuffer: true }}
+                  onCreated={({ gl, scene, camera }) => {
+                    gl.setClearColor("#1c222b", 1)
+                    glRef.current = gl
+                    sceneRef.current = scene
+                    cameraRef.current = camera
+                  }}
+                >
+                    <ambientLight intensity={1.0} />
                   <hemisphereLight
-                    skyColor={0xb1e1ff} // Trời xanh nhạt
-                    groundColor={0xffffff} // Đất sáng (trắng)
+                    args={[0xb1e1ff, 0xffffff]} // light blue sky with white ground , make rubik lighter
                     intensity={1.0}
                   />
-
                   <RubiksCube cubeState={cubeState} />
                   <OrbitControls enablePan={false} enableZoom={true} />
                 </Canvas>
               </div>
-
               {/* Status Display */}
               <div className="mt-4 space-y-3">
                 <div className="flex items-center justify-between">
@@ -991,34 +1027,9 @@ export default function RubikSolverApp() {
                   )}
                 </div>
 
-                {progress > 0 && <Progress value={progress} className="h-2 bg-gray-700" />}
-              </div>
-            </Card>
+                {uploadStatus && <div className="text-sm text-center text-gray-300">{uploadStatus}</div>}
 
-            {/* Embed in GitHub README Section */}
-            <Card className="backdrop-blur-sm border p-6 mt-8 border-blue-400 bg-sidebar-accent">
-              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <LinkIcon className="w-5 h-5 text-primary" />
-                Nhúng vào GitHub README
-              </h3>
-              <p className="text-gray-400 mb-4">
-                Bạn có thể nhúng bản xem trước của bộ giải Rubik này vào tệp README.md trên GitHub của mình. Đối với
-                phiên bản tương tác, hãy triển khai ứng dụng này và liên kết đến nó.
-              </p>
-              <div className="flex flex-col items-center gap-4">
-                <img
-                  src="/images/rubiks-cube-readme-preview.png"
-                  alt="Rubik's Cube Solver Preview"
-                  className="w-full max-w-md rounded-lg border border-gray-700"
-                />
-                <div className="w-full bg-gray-800 p-3 rounded-md text-sm font-mono break-all">
-                  {
-                    "```markdown\n[![Rubik's Cube Solver Preview](https://your-vercel-deployment-url/images/rubiks-cube-readme-preview.png)](https://your-vercel-deployment-url)\n```"
-                  }
-                </div>
-                <p className="text-xs text-gray-500">
-                  Thay thế `https://your-vercel-deployment-url` bằng URL ứng dụng đã triển khai thực tế của bạn.
-                </p>
+                {progress > 0 && <Progress value={progress} className="h-2 bg-gray-700" />}
               </div>
             </Card>
           </div>
@@ -1049,6 +1060,15 @@ export default function RubikSolverApp() {
                 >
                   <Zap className="w-4 h-4 mr-2" />
                   {isSolving ? "Solving..." : "Auto Solve (CFOP)"}
+                </Button>
+
+                <Button
+                  onClick={captureAndUploadCubeImage}
+                  disabled={isScrambling || isSolving}
+                  className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+                >
+                  <Camera className="w-4 h-4 mr-2" />
+                  Capture & Update Image
                 </Button>
 
                 {(isSolving || isScrambling) && (

@@ -1,25 +1,6 @@
 {
-  "name": "duyetbku-rubik",
-  "version": "1.0.0",
-  "description": "A 3D Rubik's Cube visualizer and solver built with Next.js",
-  "keywords": [
-    "rubik",
-    "python",
-    "rubiks-cube",
-    "react-three-fiber",
-    "nextjs",
-    "tailwindcss",
-    "3d-visualization",
-    "cfop",
-    "cube-solver",
-    "react"
-  ],
-  "author": "DuyetBKU",
-  "license": "CC-BY-NC-4.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/DuyetBKU/rubiks-cube-solver"
-  },
+  "name": "my-v0-project",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -58,6 +39,7 @@
     "@radix-ui/react-tooltip": "1.1.6",
     "@react-three/drei": "latest",
     "@react-three/fiber": "latest",
+    "@vercel/blob": "^1.1.1",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
