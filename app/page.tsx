@@ -26,60 +26,12 @@ const COLORS = {
 
 // Initial cube state from Python (solved state)
 const INITIAL_CUBE = [
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6, // Yellow (Upper)
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3, // Blue (Left)
-  1,
-  1,
-  1,
-  1,
-  1,
-  1,
-  1,
-  1,
-  1, // Red (Front)
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4,
-  4, // Green (Right)
-  2,
-  2,
-  2,
-  2,
-  2,
-  2,
-  2,
-  2,
-  2, // Orange (Behind)
-  5,
-  5,
-  5,
-  5,
-  5,
-  5,
-  5,
-  5,
-  5, // White (Down)
+  6, 6, 6, 6, 6, 6, 6, 6, 6, // Yellow (Upper)
+  3, 3, 3, 3, 3, 3, 3, 3, 3, // Blue (Left)
+  1, 1, 1, 1, 1, 1, 1, 1, 1, // Red (Front)
+  4, 4, 4, 4, 4, 4, 4, 4, 4, // Green (Right)
+  2, 2, 2, 2, 2, 2, 2, 2, 2, // Orange (Behind)
+  5, 5, 5, 5, 5, 5, 5, 5, 5, // White (Down)
 ]
 
 // Edge and corner definitions from Python
