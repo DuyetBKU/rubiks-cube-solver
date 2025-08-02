@@ -2,7 +2,8 @@
 <h1 align="center">🤖 3D Rubik's Cube Auto-Solver</h1>
 
 <p align="center">
-  <img src="https://rubiks-cube-solver-nu.vercel.app/api/rubik-proxy" width="300" alt="Rubik Cube Screenshot"/>
+	<a href="https://rubiks-cube-solver-nu.vercel.app">
+  	<img src="https://rubiks-cube-solver-nu.vercel.app/api/rubik-proxy" width="300" alt="Rubik Cube Screenshot"/>
 </p>
 
 <p align="center">
@@ -77,14 +78,11 @@ This project was built to explore:
 - User interaction with 3D visuals
 - Combining Web + AI + Graphics into one!
 
-And, of course, to collect 🌟 stars and followers 😎
 
 ---
 
 ## 🙌 Support & Star
 
-If you find this interesting, **please give a star ⭐**  
-It helps me a lot and motivates further development!
 
 ```bash
 git clone https://github.com/DuyetBKU/rubik-3d-solver
