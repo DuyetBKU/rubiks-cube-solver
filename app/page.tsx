@@ -924,7 +924,7 @@ export default function RubikSolverApp() {
       <div className="bg-black/20 backdrop-blur-sm border p-6 text-center border-blue-400">
         <div className="text-center mb-8">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text mb-4 text-blue-400">
-            3D Cube Solver v3 ⚡ (╯°□°）╯︵ ⌘⌘⌘
+            3D Cube Solver v1 ⚡ (╯°□°）╯︵ ⌘⌘⌘
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             CFOP algorithm implementation with 3D visualization
