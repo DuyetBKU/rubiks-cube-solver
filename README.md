@@ -2,7 +2,7 @@
 <h1 align="center">🤖 3D Rubik's Cube Auto-Solver</h1>
 
 <p align="center">
-	<a href="https://i.postimg.cc/65dgYsyy/Screen-Recording-08-03-202506-38-39-1-ezgif-com-video-to-gif-converter-2.gif" width="300" alt="Rubik Cube Screenshot"/>
+	<a href="https://i.postimg.cc/SNJjMrsT/Rubik-Solver.gif" width="300" alt="Rubik Cube Screenshot"/>
 </p>
 
 <p align="center">
