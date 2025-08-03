@@ -2,7 +2,9 @@
 <h1 align="center">🤖 3D Rubik's Cube Auto-Solver</h1>
 
 <p align="center">
-  <img src="https://i.postimg.cc/0NgC3jFv/Rubik-Solver.gif" width="300" alt="Rubik Cube Screenshot" />
+  <a href="https://rubiks-cube-solver-nu.vercel.app">
+  	<img src="https://i.postimg.cc/0NgC3jFv/Rubik-Solver.gif" width="420" alt="Rubik Cube Screenshot" />
+  </a>
 </p>
 
 <p align="center">
