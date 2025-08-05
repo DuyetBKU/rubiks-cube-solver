@@ -62,7 +62,7 @@
 ---
 
 ## 🚧 Roadmap
-
+- [ ] FIX some math errors colored when scramble
 - [x] Real-time scramble / auto-solve
 - [x] Canvas screenshot & shareable link
 - [ ] OCR-based image to cube state (upload photo of real Rubik)
