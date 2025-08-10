@@ -87,7 +87,7 @@ This project was built to explore:
 
 ```bash
 git clone https://github.com/DuyetBKU/web-rubik-3d-solver
-cd rubik-3d-solver
+cd web-rubik-3d-solver
 npm install
 npm run dev
 ```
