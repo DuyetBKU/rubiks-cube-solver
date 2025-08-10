@@ -18,7 +18,7 @@
   "license": "CC-BY-NC-4.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DuyetBKU/rubiks-cube-solver"
+    "url": "https://github.com/DuyetBKU/web-rubiks-cube-solver"
   },
   "private": true,
   "scripts": {
